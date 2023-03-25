@@ -22,7 +22,10 @@
         possible-transitions (if (contains? states-from state)
                                (states-from state)
                                [state])
-        next-params (concat [])
+        next-params (if (and (contains? transition "") (contains? (transition "") state))
+                      (into [] (concat possible-transitions ((transition "") state)))
+                      (possible-transitions))
+        
         next-input (drop 1 input)]
     (println "a: " state " - " input)
     (println "b: " possible-transitions " - " next-input)
