@@ -554,3 +554,274 @@ clj꞉logica-computacional-ep3.functions꞉> 
 nfa2
 {"start" "q0", "accept" ["q0"], "transition" {"1" {"q0" ["q1"], "q1" ["q2"]}, "0" {"q1" ["q0" "q2"]}, "" {"q0" ["q2"]}}}
 clj꞉logica-computacional-ep3.functions꞉> 
+[ [automaton state input] ]; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless
+; Using host:port 127.0.0.1:33643 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉logica-computacional-ep3.core꞉> 
+; Jack-in done.
+clj꞉logica-computacional-ep3.core꞉> 
+(ns logica-computacional-ep3.functions)
+nil
+clj꞉logica-computacional-ep3.functions꞉> 
+(def nfa2 (read-automaton-definition "/home/fluffyzera/poli/LogicaComputacional/logica-computacional-ep3/src/logica_computacional_ep3/nfa2.json"))
+#'logica-computacional-ep3.functions/nfa2
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0]
+b:  [q1]  -  (0)
+next params:  [q0 q2]
+a:  q1  -  (0)
+b:  [q0 q2]  -  ()
+next params:  [q0 q2]
+a:  q0  -  ()
+b:  [q0]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") [])
+next params:  [q0 q2]
+a:  q0  -  []
+b:  [q0]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0" "1"])
+next params:  [q1 q2]
+a:  q0  -  [1 0 1]
+b:  [q1]  -  (0 1)
+next params:  [q0 q2]
+a:  q1  -  (0 1)
+b:  [q0 q2]  -  (1)
+next params:  [q1 q2]
+a:  q0  -  (1)
+b:  [q1]  -  ()
+next params:  [q1]
+a:  q1  -  ()
+b:  [q1]  -  ()
+next params:  [q2]
+a:  q2  -  (1)
+b:  [q2]  -  ()
+next params:  [q2]
+a:  q2  -  ()
+b:  [q2]  -  ()
+false
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0" "1" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0 1 0]
+b:  [q1]  -  (0 1 0)
+next params:  [q0 q2]
+a:  q1  -  (0 1 0)
+b:  [q0 q2]  -  (1 0)
+next params:  [q1 q2]
+a:  q0  -  (1 0)
+b:  [q1]  -  (0)
+next params:  [q0 q2]
+a:  q1  -  (0)
+b:  [q0 q2]  -  ()
+next params:  [q0 q2]
+a:  q0  -  ()
+b:  [q0]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["0" "1" "0"])
+next params:  [q0 q2]
+a:  q0  -  [0 1 0]
+b:  [q0]  -  (1 0)
+next params:  [q1 q2]
+a:  q0  -  (1 0)
+b:  [q1]  -  (0)
+next params:  [q0 q2]
+a:  q1  -  (0)
+b:  [q0 q2]  -  ()
+next params:  [q0 q2]
+a:  q0  -  ()
+b:  [q0]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+; nREPL Connection was closed
+; Jacking in...
+; Connecting using "Leiningen" project type.
+; You can make Calva auto-select this.
+;   - See https://calva.io/connect-sequences/
+; 
+; Starting Jack-in Terminal: lein update-in :dependencies conj '[nrepl,"1.0.0"]' -- update-in :plugins conj '[cider/cider-nrepl,"0.28.5"]' -- update-in '[:repl-options,:nrepl-middleware]' conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless
+; Using host:port 127.0.0.1:43629 ...
+; Hooking up nREPL sessions ...
+; Connected session: clj
+; TIPS:
+;   - You can edit the contents here. Use it as a REPL if you like.
+;   - `alt+enter` evaluates the current top level form.
+;   - `ctrl+enter` evaluates the current form.
+;   - `alt+up` and `alt+down` traverse up and down the REPL command history
+;      when the cursor is after the last contents at the prompt
+;   - Clojure lines in stack traces are peekable and clickable.
+clj꞉logica-computacional-ep3.core꞉> 
+; Jack-in done.
+clj꞉logica-computacional-ep3.core꞉> 
+(ns logica-computacional-ep3.functions)
+nil
+clj꞉logica-computacional-ep3.functions꞉> 
+(def nfa2 (read-automaton-definition "/home/fluffyzera/poli/LogicaComputacional/logica-computacional-ep3/src/logica_computacional_ep3/nfa2.json"))
+#'logica-computacional-ep3.functions/nfa2
+clj꞉logica-computacional-ep3.functions꞉> 
+#'logica-computacional-ep3.functions/nfa2
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["0" "1" "0"])
+next params:  [reject q2]
+a:  q0  -  [0 1 0]
+b:  [reject]  -  (1 0)
+next params:  [reject]
+a:  reject  -  (1 0)
+b:  [reject]  -  (0)
+next params:  [reject]
+a:  reject  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+false
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0" "1" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0 1 0]
+b:  [q1]  -  (0 1 0)
+next params:  [q0 q2]
+a:  q1  -  (0 1 0)
+b:  [q0 q2]  -  (1 0)
+next params:  [q1 q2]
+a:  q0  -  (1 0)
+b:  [q1]  -  (0)
+next params:  [q0 q2]
+a:  q1  -  (0)
+b:  [q0 q2]  -  ()
+next params:  [reject q2]
+a:  q0  -  ()
+b:  [reject]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") [
+                                "1" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0]
+b:  [q1]  -  (0)
+next params:  [q0 q2]
+a:  q1  -  (0)
+b:  [q0 q2]  -  ()
+next params:  [reject q2]
+a:  q0  -  ()
+b:  [reject]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") [
+                                  
+])
+next params:  [reject q2]
+a:  q0  -  []
+b:  [reject]  -  ()
+true
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["0" "1" "0" "0"])
+next params:  [reject q2]
+a:  q0  -  [0 1 0 0]
+b:  [reject]  -  (1 0 0)
+next params:  [reject]
+a:  reject  -  (1 0 0)
+b:  [reject]  -  (0 0)
+next params:  [reject]
+a:  reject  -  (0 0)
+b:  [reject]  -  (0)
+next params:  [reject]
+a:  reject  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+false
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0" "1" "0" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0 1 0 0]
+b:  [q1]  -  (0 1 0 0)
+next params:  [q0 q2]
+a:  q1  -  (0 1 0 0)
+b:  [q0 q2]  -  (1 0 0)
+next params:  [q1 q2]
+a:  q0  -  (1 0 0)
+b:  [q1]  -  (0 0)
+next params:  [q0 q2]
+a:  q1  -  (0 0)
+b:  [q0 q2]  -  (0)
+next params:  [reject q2]
+a:  q0  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+next params:  [reject]
+a:  q2  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+next params:  [reject]
+a:  q2  -  (1 0 0)
+b:  [reject]  -  (0 0)
+next params:  [reject]
+a:  reject  -  (0 0)
+b:  [reject]  -  (0)
+next params:  [reject]
+a:  reject  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+false
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["1" "0" "1" "1" "0"])
+next params:  [q1 q2]
+a:  q0  -  [1 0 1 1 0]
+b:  [q1]  -  (0 1 1 0)
+next params:  [q0 q2]
+a:  q1  -  (0 1 1 0)
+b:  [q0 q2]  -  (1 1 0)
+next params:  [q1 q2]
+a:  q0  -  (1 1 0)
+b:  [q1]  -  (1 0)
+next params:  [q2]
+a:  q1  -  (1 0)
+b:  [q2]  -  (0)
+next params:  [reject]
+a:  q2  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+next params:  [reject]
+a:  q2  -  (1 1 0)
+b:  [reject]  -  (1 0)
+next params:  [reject]
+a:  reject  -  (1 0)
+b:  [reject]  -  (0)
+next params:  [reject]
+a:  reject  -  (0)
+b:  [reject]  -  ()
+next params:  [reject]
+a:  reject  -  ()
+b:  [reject]  -  ()
+false
+clj꞉logica-computacional-ep3.functions꞉> 
+(sei-la nfa2 (automaton "start") ["0" "1" "0"])

@@ -21,11 +21,12 @@
 
         possible-transitions (if (contains? states-from state)
                                (states-from state)
-                               [state])
+                               ["reject"])
         next-params (if (and (contains? transition "") (contains? (transition "") state))
                       (into [] (concat possible-transitions ((transition "") state)))
-                      (possible-transitions))
-        
+                      possible-transitions)
+        _ (println "next params: " next-params)
+
         next-input (drop 1 input)]
     (println "a: " state " - " input)
     (println "b: " possible-transitions " - " next-input)
@@ -42,3 +43,7 @@
     (sei-la automaton (automaton "start") list)))
 
 (def automaton {"start" "q0", "accept" ["q2"], "transition" {"a" {"q0" ["q3" "q1"], "q1" ["q2"]}}})
+
+(def alphabet (keys (automaton "transition")))
+
+(reduce (fn [result key] (assoc-in result ["transition" key "final"] [])) automaton alphabet)
