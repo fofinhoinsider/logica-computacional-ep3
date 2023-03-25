@@ -1,8 +1,41 @@
-(ns logica-computacional-ep3.functions)
+(ns logica-computacional-ep3.functions (:require [clojure.data.json :as json]
+                                                 [clojure.string :as str]))
 
 
 (defn final-state [automaton string]
-  (reduce (fn [state input]
-            (((automaton :transition) input) state))
-          (automaton :start)
-          string))
+  (let [list (str/split string #"")]
+    (reduce (fn [state input]
+              (((automaton "transition") input) state))
+            (automaton "start")
+            list)))
+
+(defn read-automaton-definition
+  [fname]
+  (let [json-data (slurp fname)
+        automaton-definition (json/read-str json-data)]
+    automaton-definition))
+
+(defn sei-la [automaton state input]
+  (let [transition (automaton "transition")
+        states-from (transition (first input))
+
+        possible-transitions (if (contains? states-from state)
+                               (states-from state)
+                               [state])
+        next-params (concat [])
+        next-input (drop 1 input)]
+    (println "a: " state " - " input)
+    (println "b: " possible-transitions " - " next-input)
+    (if (empty? input)
+      (contains? (set (automaton "accept")) state)
+      (reduce
+       (fn [result next-state] (or result (sei-la automaton next-state next-input)))
+       false
+       possible-transitions))))
+
+(defn final-state-nfa
+  [automaton string]
+  (let [list (str/split string #"")]
+    (sei-la automaton (automaton "start") list)))
+
+(def automaton {"start" "q0", "accept" ["q2"], "transition" {"a" {"q0" ["q3" "q1"], "q1" ["q2"]}}})

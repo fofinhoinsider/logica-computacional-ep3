@@ -1,12 +1,15 @@
 (ns logica-computacional-ep3.core
   (:gen-class)
   (:require [logica-computacional-ep3.example-automatons :refer [automatonI]]
-            [logica-computacional-ep3.functions :refer [final-state]]))
+            [logica-computacional-ep3.functions :refer [final-state]]
+            [clojure.data.json :as json]))
 
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
+  ; (let [automaton (json/read-str (nth args 2))]
+  ;   (println automaton))
   (println "O estado final ao se aplicar o autômato à cadeia é: " (final-state automatonI (list 1 0 1 1 0 1 0 1 1))))
 
 
@@ -23,7 +26,7 @@
 ;; And so the string 101101011 is accepted by the automaton.
 
 (defn accepts [automaton string]
-  (not (nil? ((automaton :accept)
+  (not (nil? ((automaton "accept")
               (final-state automaton string)))))
 
 ; (accepts automatonI (list 1 0 1 1 0 1 0 1 1)) ;-> true
