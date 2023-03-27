@@ -1,4 +1,4 @@
-# logica-computacional-ep1
+# logica-computacional-ep3
 
 Terceiro Exercíco-Programa da Disciplina de Lógica Computacional
 
@@ -36,7 +36,7 @@ onde $symbol é o caracter atual lido, $origin-state o estado de origem e $desti
 
 A exemplo, o autômato seguinte com estado inicial `A`
 
-![alt text](https://postimg.cc/N2g29NhQ)
+
 
 É representado por
 
@@ -65,26 +65,45 @@ A representação de autômatos finitos não determinísticos é muito similar �
 
 A primeira diferença é que para os estados destinos de uma transição, passamos uma lista de possíveis estados finais.
 
-Além disso, caso haja uma transição que utiliza
+Além disso, caso haja uma transição que não consuma caracteres de entrada, utilizamos uma string vazia como $symbol.
 
 Por exemplo, o autômato seguinte
 
 
 
+Pode ser representado por:
+
+```
+{
+    "start": "q0",
+    "accept": [
+        "q0"
+    ],
+    "transition": {
+        "1": {
+            "q0": [
+                "q1"
+            ],
+            "q1": [
+                "q2"
+            ]
+        },
+        "0": {
+            "q1": [
+                "q0",
+                "q2"
+            ]
+        },
+        "": {
+            "q0": [
+                "q2"
+            ]
+        }
+    }
+}
+```
+
 Utilizar o comando:
 ```
 lein run -m logica-computacional-ep3.core dfa example.json "101101011"
 ```
-
-O fecho reflexivo e transitivo será representado na matriz em "reflexive_transitive_closure.csv".
-
-Você pode executar os testes EndToEnd pelo comando
-```
-lein test
-```
-
-Caso queira incluir novos tests, insira um novo arquivo de entrada na pasta `test/logica_computacional_ep1/data/input` com o nome matrix`{N}`.csv e um arquivo de saída em `test/logica_computacional_ep1/data/expected_output` nomeado expected_output`{N}`.csv com a saída esperada. Execute o comando de teste novamente e verifique se o teste passa para seu caso.
-
-## Relatório
-
-Com esse projeto foi possível entender melhor a teoria de conjuntos em respeito as relações (...)
