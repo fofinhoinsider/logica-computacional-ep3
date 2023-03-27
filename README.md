@@ -1,44 +1,90 @@
-# logica-computacional-ep3
+# logica-computacional-ep1
 
-FIXME: description
+Terceiro Exercíco-Programa da Disciplina de Lógica Computacional
 
-## Installation
+## Instalação
 
-Download from http://example.com/FIXME.
+Para executar o projeto, você deve ter o `Clojure` e `Lein` instalados em seu computador. Os passos de instalação podem ser encontrados nas páginas oficiais:
 
-## Usage
+[Como instalar Clojure](https://clojure.org/guides/install_clojure)
 
-FIXME: explanation
+[Como instalar Lein](https://leiningen.org)
 
-    $ java -jar logica-computacional-ep3-0.1.0-standalone.jar [args]
 
-## Options
+## Como executar
 
-FIXME: listing of options this app accepts.
+### Automatos finitos determinísticos
 
-## Examples
+Criar um arquivo na pasta  `./resources` no formato json contendo seu autômato segundo a seguinte regra:
 
-...
 
-### Bugs
 
-...
 
-### Any Other Sections
-### That You Think
-### Might be Useful
 
-## License
+Deve haver um atributo "start" que contém o nome do estado inicial.
+Deve haver um atributo "accept" que contém uma lista dos estados de aceitação do autômato.
+Deve haver um atributo "transition" que mapeia as transições de estado no seguinte formato:
 
-Copyright © 2023 FIXME
+```
+"$symbol": {
+    "$origin-state": "$destiny-state"
+}
+```
 
-This program and the accompanying materials are made available under the
-terms of the Eclipse Public License 2.0 which is available at
-http://www.eclipse.org/legal/epl-2.0.
+onde $symbol é o caracter atual lido, $origin-state o estado de origem e $destiny-state o estado de destino.
 
-This Source Code may also be made available under the following Secondary
-Licenses when the conditions for such availability set forth in the Eclipse
-Public License, v. 2.0 are satisfied: GNU General Public License as published by
-the Free Software Foundation, either version 2 of the License, or (at your
-option) any later version, with the GNU Classpath Exception which is available
-at https://www.gnu.org/software/classpath/license.html.
+
+A exemplo, o autômato seguinte com estado inicial `A`
+
+![alt text](https://postimg.cc/N2g29NhQ)
+
+É representado por
+
+```
+{
+    "start": "A",
+    "accept": [
+        "B"
+    ],
+    "transition": {
+        "1": {
+            "A": "B",
+            "B": "B"
+        },
+        "0": {
+            "A": "A",
+            "B": "A"
+        }
+    }
+}
+```
+
+### Automatos finitos não-determinísticos
+
+A representação de autômatos finitos não determinísticos é muito similar à representação dos determinísticos.
+
+A primeira diferença é que para os estados destinos de uma transição, passamos uma lista de possíveis estados finais.
+
+Além disso, caso haja uma transição que utiliza
+
+Por exemplo, o autômato seguinte
+
+
+
+Utilizar o comando:
+```
+lein run -m logica-computacional-ep3.core dfa example.json "101101011"
+```
+
+O fecho reflexivo e transitivo será representado na matriz em "reflexive_transitive_closure.csv".
+
+Você pode executar os testes EndToEnd pelo comando
+```
+lein test
+```
+
+Caso queira incluir novos tests, insira um novo arquivo de entrada na pasta `test/logica_computacional_ep1/data/input` com o nome matrix`{N}`.csv e um arquivo de saída em `test/logica_computacional_ep1/data/expected_output` nomeado expected_output`{N}`.csv com a saída esperada. Execute o comando de teste novamente e verifique se o teste passa para seu caso.
+
+## Relatório
+
+Com esse projeto foi possível entender melhor a teoria de conjuntos em respeito as relações (...)
