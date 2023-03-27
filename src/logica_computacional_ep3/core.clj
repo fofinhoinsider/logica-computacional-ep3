@@ -7,7 +7,6 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println args)
   (let [determinism (nth args 0)
         file-name (nth args 1)
         chain (nth args 2)

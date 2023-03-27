@@ -5,7 +5,6 @@
 
 (defn final-state [automaton string]
   (let [split-chain (str/split string #"")]
-    (println "split-chain: " split-chain)
     (reduce (fn [state symbol]
               (((automaton "transition") symbol) state))
             (automaton "start")
