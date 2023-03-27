@@ -11,7 +11,7 @@ Para executar o projeto, você deve ter o `Clojure` e `Lein` instalados em seu c
 [Como instalar Lein](https://leiningen.org)
 
 
-## Como executar
+## Como representar autômatos
 
 ### Automatos finitos determinísticos
 
@@ -103,7 +103,16 @@ Pode ser representado por:
 }
 ```
 
+## Como executar
+
 Utilizar o comando:
 ```
 lein run -m logica-computacional-ep3.core dfa example.json "101101011"
 ```
+
+Onde:
+- O primeiro parâmetro (no caso `dfa`) sinaliza se o autômato é determinístico(`dfa`) ou não determinístico(qualquer outro valor)
+- O segundo parâmetro é o nome do arquivo na pasta `./resources/` que contém o autômato segundo as regras acima
+- O terceiro parâmetro é a cadeia que queremos avaliar se o autômato aceita ou rejeita.
+
+A saída do programa é o boolean que indica se a cadeia é aceita ou rejeitada.
